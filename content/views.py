@@ -8,6 +8,9 @@ from rest_framework.views import APIView
 from content.serializers import ContentSerializer
 from content.models import Content
 from itsmbc.s3_config import upload_base64_file
+from content.filter import ContentFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from itsmbc.custom_paginations import CustomPagination
 
 
 # Create content
@@ -33,7 +36,9 @@ class ContentCreateView(GenericAPIView):
 class ContentListView(ListAPIView):
     queryset = Content.objects.all()
     serializer_class = ContentSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = ContentFilter
+    pagination_class = CustomPagination
     def list(self, request, *args, **kwargs):
         response = super().list(request, *args, **kwargs)
         if not response.data:
