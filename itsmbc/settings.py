@@ -160,7 +160,7 @@ AWS_S3_REGION_NAME = 'eu-north-1'
 AWS_S3_FILE_OVERWRITE = False
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 STATIC_URL = 'staticfiles/'
 
 # FIX: Django 4.2
@@ -169,10 +169,10 @@ STORAGES = {
     "default": {
         "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
     },
-    # # CSS and JS file management
-    # "staticfiles": {
-    #     "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
-    # }
+    # CSS and JS file management
+    "staticfiles": {
+        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+    }
 }
 
 
