@@ -5,5 +5,4 @@ class NetworkSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Network
-        fields = ['name','description','network_image']
-        
+        fields = '__all__'
