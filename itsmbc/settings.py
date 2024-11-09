@@ -161,7 +161,7 @@ AWS_S3_FILE_OVERWRITE = False
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
 # MEDIA_URL = '/media/'
-# STATIC_URL = 'staticfiles/'
+STATIC_URL = 'staticfiles/'
 
 # FIX: Django 4.2
 STORAGES = {
