@@ -102,3 +102,40 @@ class ContentDeleteView(APIView):
                 'status': status.HTTP_404_NOT_FOUND,
                 'message': 'Content not found'
             }, status=status.HTTP_404_NOT_FOUND)
+
+import firebase_admin
+from firebase_admin import credentials, auth
+class GetAllUsersView(APIView):
+    def get(self, request):
+
+
+# Initialize Firebase Admin SDK
+     cred = credentials.Certificate("its-mbc-firebase-adminsdk-xfh4x-0fa1cb423e.json")  # Replace with the path to your service account key JSON file
+     firebase_admin.initialize_app(cred)
+
+     def fetch_all_users():
+        users = []
+    # Iterate over all users
+        page = auth.list_users()
+        while page:
+           for user in page.users:
+            users.append({
+                "uid": user.uid,
+                "email": user.email,
+                "display_name": user.display_name,
+                "phone_number": user.phone_number,
+                "photo_url": user.photo_url,
+                "disabled": user.disabled,
+               })
+        # Get the next page of users
+           page = page.get_next_page()
+
+        return users
+
+# Example usage:
+     all_users = fetch_all_users()
+     return Response({
+                'status': status.HTTP_200_OK,
+                'message': 'Content deleted successfully',
+                'data': all_users
+            }, status=status.HTTP_200_OK)
