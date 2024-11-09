@@ -7,7 +7,7 @@ from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.views import APIView
 from content_season.serializers import SeasonSerializer
 from content_season.models import Season
-from itsmbc.s3_config import upload_base64_file
+# from itsmbc.s3_config import upload_base64_file
 
 # Create season
 class SeasonCreateView(GenericAPIView):

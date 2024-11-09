@@ -7,7 +7,7 @@ from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.views import APIView
 from networks.serializers import NetworkSerializer
 from networks.models import Network
-from itsmbc.s3_config import upload_base64_file
+# from itsmbc.s3_config import upload_base64_file
 
 # Create network
 class NetworkCreateView(GenericAPIView):
