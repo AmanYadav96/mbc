@@ -150,28 +150,36 @@ REST_FRAMEWORK = {
     
 }
 # AWS S3 Settings
-AWS_ACCESS_KEY_ID = 'AKIA5I4WJHTOILINEBNX'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'itsmbc'
-AWS_S3_REGION_NAME = 'eu-north-1'
+# AWS_ACCESS_KEY_ID = 'AKIA5I4WJHTOILINEBNX'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'itsmbc'
+# AWS_S3_REGION_NAME = 'eu-north-1'
 
 
-# S3 Storage settings
-AWS_S3_FILE_OVERWRITE = False
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+# # S3 Storage settings
+# AWS_S3_FILE_OVERWRITE = False
+# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
 MEDIA_URL = '/media/'
 STATIC_URL = 'staticfiles/'
 
+CLOUDINARY_STORAGE = {
+    'CLOUDINARY_URL':'CLOUDINARY_URL=cloudinary://722259667259758:0XlA4eRjqQUKPAcjR5k_MGDL-7Q@dqhjy5eft',
+    'CLOUD_NAME': 'dqhjy5eft',
+    'API_KEY': '722259667259758',
+    'API_SECRET': '0XlA4eRjqQUKPAcjR5k_MGDL-7Q'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # FIX: Django 4.2
 STORAGES = {
     # Media Files
     "default": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND":'cloudinary_storage.storage.MediaCloudinaryStorage',
     },
     # CSS and JS file management
     "staticfiles": {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND": 'cloudinary_storage.storage.MediaCloudinaryStorage',
     }
 }
 
