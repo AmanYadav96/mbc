@@ -21,10 +21,10 @@ class ContentCreateView(GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
-        url =upload_base64_file(request.data.get('vertical_poster'),"vertical-poster/")
-        serializer.validated_data['vertical_poster'] = url
-        url =upload_base64_file(request.data.get('horizontol_poster'),"horizontol-poster/")
-        serializer.validated_data['horizontol_poster'] = url
+        # url =upload_base64_file(request.data.get('vertical_poster'),"vertical-poster/")
+        # serializer.validated_data['vertical_poster'] = url
+        # url =upload_base64_file(request.data.get('horizontol_poster'),"horizontol-poster/")
+        # serializer.validated_data['horizontol_poster'] = url
         serializer.save()
         return Response({
             'status': status.HTTP_201_CREATED,
