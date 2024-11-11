@@ -7,6 +7,9 @@ from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.views import APIView
 from episode_content_source.serializers import EpisodesSerializer
 from episode_content_source.models import Episodes
+from episode_content_source.filter import EpisodeFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from itsmbc.custom_paginations import CustomPagination
 # Create Episode
 class EpisodeCreateView(GenericAPIView):
     serializer_class = EpisodesSerializer
@@ -25,7 +28,9 @@ class EpisodeCreateView(GenericAPIView):
 class EpisodeListView(ListAPIView):
     queryset = Episodes.objects.all()
     serializer_class = EpisodesSerializer
-
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = EpisodeFilter
+    pagination_class = CustomPagination
     def list(self, request, *args, **kwargs):
         response = super().list(request, *args, **kwargs)
         if not response.data:
