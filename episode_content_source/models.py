@@ -5,10 +5,11 @@ from content_season.models import Season
 
 # Create your models here.
 class Episodes(models.Model):
-    episode_id = models.UUIDField(primary_key=True)
+    episode_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     season_id = models.ForeignKey(Season , on_delete=models.CASCADE , default=uuid.uuid4)
     content_id = models.ForeignKey(Content, on_delete=models.CASCADE, default=uuid.uuid4)
     episode_title = models.CharField(max_length=999)
+    season_number = models.IntegerField()
     episode_number = models.PositiveIntegerField()
     source_quality = models.CharField(max_length=999)
     source_size = models.CharField(max_length=999)
